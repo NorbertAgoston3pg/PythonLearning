@@ -13,8 +13,6 @@ def is_prime(number):
             break
     return p
 
-print(is_prime(int(input("Enter a number ="))))
-
 # 2
 
 
@@ -22,8 +20,6 @@ def prime_numbers_smaller_than(number):
     for element in range(2, number):
         if is_prime(element):
             print("Prime number = {0}".format(element))
-
-prime_numbers_smaller_than(200)
 
 # 3
 
@@ -47,10 +43,10 @@ def fibonacci(number_of_elements):
         return result
 
 
-fibonacci_sequence(7)
-
-for i in range(8):
-    print(fibonacci(i))
+# fibonacci_sequence(7)
+#
+# for i in range(8):
+#     print(fibonacci(i))
 
 # 4
 
@@ -69,7 +65,9 @@ def my_map(func, iterable):
 
     return result
 
-print(my_map(my_sqare, numbers))
+
+def exercise_4():
+    print(my_map(my_sqare, numbers))
 
 
 # 5
@@ -85,7 +83,9 @@ def my_filter(func, iterable):
             result.append(element)
     return result
 
-print(my_filter(is_even, numbers))
+
+def exercise_5():
+    print(my_filter(is_even, numbers))
 
 # 6
 
@@ -99,7 +99,9 @@ def my_reduce(func, iterable, initializer):
         initializer = func(initializer, element)
     return initializer
 
-print(my_reduce(my_sum, numbers, 0))
+
+def exercise_6():
+    print(my_reduce(my_sum, numbers, 0))
 
 
 # 7
@@ -109,15 +111,13 @@ def sum_of_special_numbers_smaller_than(number):
     filtered_numbers = filter(lambda x: x % 3 == 0, special_numbers)
     return reduce(lambda x, y: x + y, filtered_numbers, 0)
 
-print(sum_of_special_numbers_smaller_than(5))
-
 
 # 8
 
 def sort(elements):
     return sorted(elements)
 
-print(sort([4, 2, 3, 1]))
+# print(sort([4, 2, 3, 1]))
 
 # 9
 
@@ -125,7 +125,7 @@ print(sort([4, 2, 3, 1]))
 def element_in_list(element, elements):
     return element in elements
 
-print(element_in_list(0, [1, 4, 5]))
+# print(element_in_list(0, [1, 4, 5]))
 
 # 10
 # def get_text(name):
@@ -184,8 +184,8 @@ class Person(object):
     def get_fullname(self):
         return self.name + " " + self.family
 
-my_person = Person()
-print(my_person.get_fullname)
+# my_person = Person()
+# print(my_person.get_fullname)
 
 
 def tags(tag_name):
@@ -201,12 +201,6 @@ def tags(tag_name):
 def get_text(name):
     """returns some text"""
     return "Hello " + name
-
-
-print(get_text("John"))
-print(get_text.__name__)
-print(get_text.__doc__)
-print(get_text.__module__)
 
 # 10
 #
