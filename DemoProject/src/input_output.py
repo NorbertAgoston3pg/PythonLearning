@@ -43,9 +43,9 @@ def wc(file_name):
 
     return chars_count, words_count, lines_count, len(unique_words)
 
-file_info = wc('passwd')
-print("{0} characters {1} words {2} lines and {3} unique words in file".format(
-    file_info[0], file_info[1], file_info[2], file_info[3]))
+# file_info = wc('passwd')
+# print("{0} characters {1} words {2} lines and {3} unique words in file"
+# .format(file_info[0], file_info[1], file_info[2], file_info[3]))
 
 # 3
 
@@ -61,7 +61,6 @@ def extract_users(file_name):
     return users
 
 file_users = extract_users('passwd')
-# print(file_users)
 
 
 def output_users_to_file(users, file_name):
