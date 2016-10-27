@@ -228,12 +228,33 @@ def time_duration(func):
         interval1 = time.time()
         func()
         interval2 = time.time()
-        return "Execution time =" + str(interval2-interval1) + "\n"
+        return "Execution time =" + str(total_time(interval2-interval1)) + "\n"
     return func_wrapper
+
+
+# 12
+
+class MyTime:
+    def __init__(self):
+        pass
+
+
+def total_time(elapsed_time, my_time=MyTime()):
+    if not hasattr(my_time, "total"):
+        my_time.total = 0
+    my_time.total += elapsed_time
+    return my_time.total
 
 
 @time_duration
 def my_func():
     for i in range(5):
+        print(i)
+        time.sleep(1)
+
+
+@time_duration
+def my_func2():
+    for i in range(10):
         print(i)
         time.sleep(1)

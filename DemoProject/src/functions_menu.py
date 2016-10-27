@@ -5,7 +5,7 @@ def launch_functions_menu():
     print("Functions Section - Enter the exercise number you want to run")
     selection = 0
 
-    while selection != 12:
+    while selection != 13:
         print("exercise #1")
         print("exercise #2")
         print("exercise #3")
@@ -17,7 +17,8 @@ def launch_functions_menu():
         print("exercise #9")
         print("exercise #10")
         print("exercise #11")
-        print("exit #12")
+        print("exercise #12")
+        print("exit #13")
 
         selection = int(input("Insert Selection = "))
 
@@ -65,6 +66,12 @@ def launch_functions_menu():
             print("measure the duration of a function")
             print(functions.my_func())
         elif selection == 12:
+            print("Total execution time for multiple functions")
+            print("----- Total Execution Time -------")
+            print(functions.my_func())
+            print("----- Total Execution Time -------")
+            print(functions.my_func2())
+        elif selection == 13:
             print("Exit")
 
 launch_functions_menu()
