@@ -1,6 +1,7 @@
 
 from functools import reduce
 from functools import wraps
+import time
 
 # 1
 
@@ -203,4 +204,36 @@ def get_text(name):
     return "Hello " + name
 
 # 10
-#
+
+
+class State:
+    def __init__(self):
+        pass
+
+
+def stateful_func(state=State()):
+    if hasattr(state, "index"):
+        state.index += 1
+    else:
+        state.index = 0
+
+    return state.index
+
+
+# 11
+
+
+def time_duration(func):
+    def func_wrapper():
+        interval1 = time.time()
+        func()
+        interval2 = time.time()
+        return "Execution time =" + str(interval2-interval1) + "\n"
+    return func_wrapper
+
+
+@time_duration
+def my_func():
+    for i in range(5):
+        print(i)
+        time.sleep(1)
