@@ -1,6 +1,7 @@
 
 from functools import reduce
 from functools import wraps
+import time
 
 # 1
 
@@ -13,8 +14,6 @@ def is_prime(number):
             break
     return p
 
-print(is_prime(int(input("Enter a number ="))))
-
 # 2
 
 
@@ -22,8 +21,6 @@ def prime_numbers_smaller_than(number):
     for element in range(2, number):
         if is_prime(element):
             print("Prime number = {0}".format(element))
-
-prime_numbers_smaller_than(200)
 
 # 3
 
@@ -47,10 +44,10 @@ def fibonacci(number_of_elements):
         return result
 
 
-fibonacci_sequence(7)
-
-for i in range(8):
-    print(fibonacci(i))
+# fibonacci_sequence(7)
+#
+# for i in range(8):
+#     print(fibonacci(i))
 
 # 4
 
@@ -69,7 +66,9 @@ def my_map(func, iterable):
 
     return result
 
-print(my_map(my_sqare, numbers))
+
+def exercise_4():
+    print(my_map(my_sqare, numbers))
 
 
 # 5
@@ -85,7 +84,9 @@ def my_filter(func, iterable):
             result.append(element)
     return result
 
-print(my_filter(is_even, numbers))
+
+def exercise_5():
+    print(my_filter(is_even, numbers))
 
 # 6
 
@@ -99,7 +100,9 @@ def my_reduce(func, iterable, initializer):
         initializer = func(initializer, element)
     return initializer
 
-print(my_reduce(my_sum, numbers, 0))
+
+def exercise_6():
+    print(my_reduce(my_sum, numbers, 0))
 
 
 # 7
@@ -109,15 +112,13 @@ def sum_of_special_numbers_smaller_than(number):
     filtered_numbers = filter(lambda x: x % 3 == 0, special_numbers)
     return reduce(lambda x, y: x + y, filtered_numbers, 0)
 
-print(sum_of_special_numbers_smaller_than(5))
-
 
 # 8
 
 def sort(elements):
     return sorted(elements)
 
-print(sort([4, 2, 3, 1]))
+# print(sort([4, 2, 3, 1]))
 
 # 9
 
@@ -125,7 +126,7 @@ print(sort([4, 2, 3, 1]))
 def element_in_list(element, elements):
     return element in elements
 
-print(element_in_list(0, [1, 4, 5]))
+# print(element_in_list(0, [1, 4, 5]))
 
 # 10
 # def get_text(name):
@@ -184,8 +185,8 @@ class Person(object):
     def get_fullname(self):
         return self.name + " " + self.family
 
-my_person = Person()
-print(my_person.get_fullname)
+# my_person = Person()
+# print(my_person.get_fullname)
 
 
 def tags(tag_name):
@@ -202,10 +203,58 @@ def get_text(name):
     """returns some text"""
     return "Hello " + name
 
-
-print(get_text("John"))
-print(get_text.__name__)
-print(get_text.__doc__)
-print(get_text.__module__)
-
 # 10
+
+
+class State:
+    def __init__(self):
+        pass
+
+
+def stateful_func(state=State()):
+    if hasattr(state, "index"):
+        state.index += 1
+    else:
+        state.index = 0
+
+    return state.index
+
+
+# 11
+
+
+def time_duration(func):
+    def func_wrapper():
+        interval1 = time.time()
+        func()
+        interval2 = time.time()
+        return "Execution time =" + str(total_time(interval2-interval1)) + "\n"
+    return func_wrapper
+
+
+# 12
+
+class MyTime:
+    def __init__(self):
+        pass
+
+
+def total_time(elapsed_time, my_time=MyTime()):
+    if not hasattr(my_time, "total"):
+        my_time.total = 0
+    my_time.total += elapsed_time
+    return my_time.total
+
+
+@time_duration
+def my_func():
+    for i in range(5):
+        print(i)
+        time.sleep(1)
+
+
+@time_duration
+def my_func2():
+    for i in range(10):
+        print(i)
+        time.sleep(1)
