@@ -83,11 +83,15 @@ def class_scores_file_paths(score_folder='scores'):
     return classes
 
 
-def process_file(path):
-    with open(path) as data_file:
-        data = json.load(data_file)
-
-    pprint(data)
+# def process_file(path):
+#     print(path)
+#     with open(path) as json_data:
+        # print(json_data)
+        # data = json.load(json_data)
+        # print(data)
+        # js = json_data.read()
+        # print(json.loads('{0}'.format(js)))
+        # print(type(json.loads('{0}'.format(js))))
 
 
 # def score_statistics(score_folder='scores'):
