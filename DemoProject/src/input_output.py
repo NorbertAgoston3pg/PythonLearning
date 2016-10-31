@@ -1,6 +1,5 @@
 import os
-import json
-from pprint import pprint
+# import json
 
 # 1
 
@@ -37,9 +36,9 @@ def wc(file_name):
             lines_count += 1
             row_elements = line.split(" ")
             words_count += len(row_elements)
-            for word in row_elements:
-                if word not in unique_words:
-                    unique_words.append(word)
+            for item in row_elements:
+                if item not in unique_words:
+                    unique_words.append(item)
 
     return chars_count, words_count, lines_count, len(unique_words)
 
@@ -74,29 +73,85 @@ output_users_to_file(file_users, 'output.csv')
 # 4
 
 
-def class_scores_file_paths(score_folder='scores'):
-    dir_path = os.path.join(os.path.dirname(__file__), score_folder)
-    classes = []
-    for filename in os.listdir(dir_path):
-        classes.append(dir_path + "/" + filename)
-
-    return classes
-
-
+# def class_scores_file_paths(score_folder='scores'):
+#     dir_path = os.path.join(os.path.dirname(__file__), score_folder)
+#     classes = []
+#     for filename in os.listdir(dir_path):
+#         classes.append(dir_path + "/" + filename)
+#
+#     return classes
+#
+#
 # def process_file(path):
-#     print(path)
-#     with open(path) as json_data:
-        # print(json_data)
-        # data = json.load(json_data)
-        # print(data)
-        # js = json_data.read()
-        # print(json.loads('{0}'.format(js)))
-        # print(type(json.loads('{0}'.format(js))))
-
-
+#     # print(path)
+#     with open(path, "r") as f:
+#         # print(f)
+#         # data = json.load(f)
+#         # data = json.loads(f.read())
+#         # print(type(data))
+#         # js = f.read()
+#         # print(js)
+#
+#         # json_string = '{"uuid":"5730e8666ffa02.34177329","error":""}'
+#
+#         json_data = json.load(f)
+#         print(json_data)
+#
+#
 # def score_statistics(score_folder='scores'):
 #     for path in class_scores_file_paths():
 #         process_file(path)
-
-
+#
+#
 # score_statistics('scores')
+
+
+# 5
+
+
+def read_text(file_name):
+    fn = os.path.join(os.path.dirname(__file__), file_name)
+    words = []
+    with open(fn) as f:
+        for line in f:
+            print(line)
+            words_on_line = [s.lower() for s in line.split()]
+            table = str.maketrans("", "", "!?;.,1234567890'")
+            words_on_line = [s.translate(table) for s in words_on_line]
+            words += words_on_line
+
+    return words
+
+
+# print(read_text("text.txt"))
+
+
+# 5.1
+
+
+def word_count(words):
+    statistics = {}
+    for item in words:
+        statistics[item] = words.count(item)
+    return statistics
+
+some_words = read_text("text.txt")
+words_statistics = word_count(some_words)
+print(words_statistics)
+
+
+# 5.2
+
+
+def word_with_max_occurence(info_dict):
+    max_occurence = -1
+    popular_word = ""
+    for key, value in info_dict.items():
+        print("{0} = {1}".format(key, value))
+        if max_occurence < value:
+            max_occurence = value
+            popular_word = key
+    return popular_word
+
+word = word_with_max_occurence(words_statistics)
+print("Word with most occurences = " + word)
