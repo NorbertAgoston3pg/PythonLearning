@@ -114,16 +114,13 @@ def read_text(file_name):
     words = []
     with open(fn) as f:
         for line in f:
-            print(line)
+            print("Original Line - {0}".format(line))
             words_on_line = [s.lower() for s in line.split()]
             table = str.maketrans("", "", "!?;.,1234567890'")
             words_on_line = [s.translate(table) for s in words_on_line]
             words += words_on_line
 
     return words
-
-
-# print(read_text("text.txt"))
 
 
 # 5.1
@@ -135,10 +132,6 @@ def word_count(words):
         statistics[item] = words.count(item)
     return statistics
 
-some_words = read_text("text.txt")
-words_statistics = word_count(some_words)
-print(words_statistics)
-
 
 # 5.2
 
@@ -147,11 +140,7 @@ def word_with_max_occurence(info_dict):
     max_occurence = -1
     popular_word = ""
     for key, value in info_dict.items():
-        print("{0} = {1}".format(key, value))
         if max_occurence < value:
             max_occurence = value
             popular_word = key
     return popular_word
-
-word = word_with_max_occurence(words_statistics)
-print("Word with most occurences = " + word)
